@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Life RPG</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Real Life RPG</h1>
+        </header>
+
+        <div class="main-layout">
+            <div class="left-column">
+                <!-- Character Info Panel -->
+                <section id="character-panel" class="panel">
+                    <h2 class="panel-title">Character Info</h2>
+                    <div id="character-stats">
+                        <div class="stat">
+                            <strong>Name:</strong> <span id="char-name">Adventurer</span>
+                        </div>
+                        <div class="stat">
+                            <strong>Level:</strong> <span id="char-level">1</span>
+                        </div>
+                        <div class="stat">
+                            <strong>Health Points (HP):</strong>
+                            <div class="progress-bar-container">
+                                <div id="hp-bar" class="progress-bar hp">100/100</div>
+                            </div>
+                        </div>
+                        <div class="stat">
+                            <strong>Experience (XP):</strong>
+                            <div class="progress-bar-container">
+                                <div id="xp-bar" class="progress-bar xp">0/100</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Inventory & Skills Panels -->
+                <section id="inventory-panel" class="panel">
+                    <h2 class="panel-title">Inventory</h2>
+                    <ul id="inventory-list">
+                        <!-- Inventory items will be listed here -->
+                    </ul>
+                </section>
+                <section id="skills-panel" class="panel">
+                    <h2 class="panel-title">Skills</h2>
+                    <ul id="skills-list">
+                        <!-- Acquired skills will be listed here -->
+                    </ul>
+                </section>
+            </div>
+
+            <div class="right-column">
+                 <!-- Monster Panel -->
+                <section id="monster-panel" class="panel">
+                    <h2 class="panel-title">Current Foe</h2>
+                    <div id="monster-area">
+                        <div id="slash-fx"></div>
+                        <pre id="monster-sprite"></pre>
+                    </div>
+                    <p id="monster-name">A new foe appears...</p>
+                </section>
+
+                <!-- Quests Panel -->
+                <section id="quests-panel" class="panel">
+                    <h2 class="panel-title">Active Quests</h2>
+                    <div id="active-quest-list">
+                        <!-- Active quests will be dynamically inserted here -->
+                    </div>
+                    <div class="add-quest-form">
+                        <input type="text" id="new-quest-input" placeholder="Add a new custom quest...">
+                        <button id="add-quest-btn">Embark on Quest</button>
+                    </div>
+                </section>
+
+                 <!-- Completed Quests Panel -->
+                <section id="completed-quests-panel" class="panel">
+                    <div class="completed-header">
+                        <h2 class="panel-title">Completed Quests</h2>
+                        <button id="clear-completed-btn" title="Clear all completed quests">Clear All</button>
+                    </div>
+                    <div id="completed-quest-list">
+                        <!-- Completed quests will be dynamically inserted here -->
+                    </div>
+                </section>
+            </div>
+        </div>
+        
+        <!-- Notification Message -->
+        <div id="notification" class="hidden"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

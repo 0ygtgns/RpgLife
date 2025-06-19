@@ -1,0 +1,207 @@
+/* Genel Sayfa Stili */
+body {
+    background-color: #1a1a2e;
+    color: #e0e1dd;
+    font-family: 'VT323', monospace;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 20px;
+    background: linear-gradient(-45deg, #16213e, #0f3460, #1a1a2e, #1e1e3f);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    position: relative;
+    overflow-x: hidden;
+}
+
+body::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(0deg, rgba(0,0,0,0.2), rgba(0,0,0,0.2) 1px, transparent 1px, transparent 2px);
+    pointer-events: none;
+    z-index: 1;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    background-color: rgba(15, 52, 96, 0.8);
+    border: 3px solid #537895;
+    border-radius: 15px;
+    box-shadow: 0 0 35px rgba(233, 69, 96, 0.3);
+    padding: 20px;
+    backdrop-filter: blur(5px);
+    z-index: 2;
+}
+
+header h1 {
+    font-family: 'Press Start 2P', cursive;
+    text-align: center;
+    color: #e94560;
+    text-shadow: 3px 3px 0px #16213e, 0 0 20px #e94560;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from { text-shadow: 3px 3px 0 #16213e, 0 0 10px #e94560; }
+    to { text-shadow: 3px 3px 0 #16213e, 0 0 30px #ff5c7a; }
+}
+
+.main-layout {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 20px;
+}
+
+.left-column, .right-column {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Panel Stilleri */
+.panel {
+    background-color: rgba(22, 33, 62, 0.9);
+    border: 2px solid #537895;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.7);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.panel:hover {
+    transform: translateY(-5px) scale(1.02);
+    border-color: #8da9c4;
+    box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.7), 0 0 20px rgba(141, 169, 196, 0.4);
+}
+
+
+.panel-title {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.2rem;
+    color: #e94560;
+    margin-top: 0;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #537895;
+    padding-bottom: 10px;
+}
+
+/* Canavar Paneli */
+#monster-panel { text-align: center; }
+#monster-area { position: relative; height: 150px; display: flex; justify-content: center; align-items: center; margin-bottom: 10px; }
+#monster-sprite { font-family: 'VT323', monospace; font-size: 16px; line-height: 1; color: #e0e1dd; transition: transform 0.2s, opacity 0.5s; }
+#monster-name { font-family: 'Press Start 2P', cursive; font-size: 0.9rem; color: #ffc107; }
+#slash-fx { position: absolute; width: 100px; height: 100px; background-image: url('https://i.imgur.com/2Y4d4yW.png'); background-size: contain; background-repeat: no-repeat; transform: rotate(-30deg); opacity: 0; pointer-events: none; }
+
+/* Animasyonlar */
+.monster-hit { animation: monsterHit 0.3s ease-in-out; }
+@keyframes monsterHit { 0%, 100% { transform: translateX(0); } 20% { transform: translateX(-10px); } 40% { transform: translateX(10px); } 60% { transform: translateX(-10px); } 80% { transform: translateX(10px); } }
+.monster-death { animation: monsterDeath 0.8s forwards; }
+@keyframes monsterDeath { 0% { opacity: 1; transform: rotate(0) scale(1); } 100% { opacity: 0; transform: rotate(20deg) scale(0.5); } }
+.slash-animation { animation: slashAnimation 0.3s forwards; }
+@keyframes slashAnimation { 0% { opacity: 1; transform: scale(0.5) rotate(-60deg); } 50% { opacity: 1; transform: scale(1.2) rotate(10deg); } 100% { opacity: 0; transform: scale(1.2) rotate(10deg); } }
+
+/* İlerleme Çubuğu Stilleri */
+.progress-bar { transition: width 0.5s ease-in-out; }
+.progress-bar.hp { background: linear-gradient(to right, #e94560, #b8364c); }
+.progress-bar.xp { background: linear-gradient(to right, #55d0a0, #3aa87f); }
+
+/* Görev Listesi Stilleri */
+.quest { transition: all 0.3s ease; }
+.quest:hover { transform: translateX(5px); }
+.quest.completed { text-decoration: line-through; color: #a0a0a0; background-color: #1f4268a2; }
+.quest.completed .quest-title { color: #aaa; }
+
+/* Görev Aksiyonları (Butonlar) */
+.quest-actions { display: flex; align-items: center; gap: 8px; margin-left: auto; }
+
+/* Genel Buton Stili */
+.quest-actions button, #add-quest-btn, #clear-completed-btn {
+    font-family: 'Press Start 2P', cursive;
+    border: 2px solid;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px;
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.3);
+}
+.quest-actions button:hover, #add-quest-btn:hover, #clear-completed-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px;
+}
+.quest-actions button:active, #add-quest-btn:active, #clear-completed-btn:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px;
+}
+
+/* Özel Buton Stilleri */
+.complete-btn { background-color: #55d0a0; color: #16213e; border-color: #3aa87f; box-shadow: 0 4px #3aa87f; }
+.complete-btn:hover { background-color: #6cf0b8; box-shadow: 0 6px #3aa87f; }
+.complete-btn:active { box-shadow: 0 2px #3aa87f; }
+
+#add-quest-btn { background-color: #e94560; color: #fff; border-color: #b8364c; box-shadow: 0 4px #b8364c; }
+#add-quest-btn:hover { background-color: #ff5c7a; box-shadow: 0 6px #b8364c; }
+#add-quest-btn:active { box-shadow: 0 2px #b8364c; }
+
+.delete-btn {
+    background-color: #992c2c; color: #fff; border: none; width: 28px; height: 28px; padding: 0; font-size: 1rem;
+    line-height: 28px; text-align: center; border-radius: 5px; box-shadow: 0 3px #5c1a1a;
+}
+.delete-btn:hover { background-color: #e94560; transform: scale(1.1); animation: shake 0.4s; }
+.delete-btn:active { transform: translateY(1px) scale(1.1); box-shadow: 0 2px #5c1a1a; }
+
+@keyframes shake {
+  10%, 90% { transform: translateX(-1px) scale(1.1); }
+  20%, 80% { transform: translateX(2px) scale(1.1); }
+  30%, 50%, 70% { transform: translateX(-3px) scale(1.1); }
+  40%, 60% { transform: translateX(3px) scale(1.1); }
+}
+
+/* Tamamlanan Görevler Bölümü */
+.completed-header { display: flex; justify-content: space-between; align-items: center; }
+.completed-header .panel-title { border-bottom: none; margin-bottom: 0; }
+
+#clear-completed-btn { font-size: 0.7rem !important; background: #537895; color: #16213e; border-color: #3d5a74; box-shadow: 0 4px #3d5a74; }
+#clear-completed-btn:hover { background: #8da9c4; color: #fff; box-shadow: 0 6px #3d5a74; }
+#clear-completed-btn:active { box-shadow: 0 2px #3d5a74; }
+
+
+/* Bildirim Mesajı */
+#notification { position: fixed; top: -100px; left: 50%; transform: translateX(-50%); color: white; padding: 15px 30px; border-radius: 5px; border: 2px solid #fff; font-family: 'Press Start 2P', cursive; z-index: 1000; opacity: 0; transition: opacity 0.5s, top 0.5s; text-shadow: 2px 2px 2px rgba(0,0,0,0.5); }
+#notification.show { opacity: 1; top: 40px; }
+#notification.success { background: linear-gradient(45deg, #55d0a0, #3aa87f); }
+#notification.error { background: linear-gradient(45deg, #e94560, #b8364c); }
+#notification.level-up { background: linear-gradient(45deg, #f7d85d, #f5a623); color: #333; font-size: 1.1rem; }
+
+/* Mobil Uyum */
+@media (max-width: 768px) { .main-layout { grid-template-columns: 1fr; } header h1 { font-size: 1.5rem; } }
+
+/* Diğer gerekli stiller */
+.progress-bar-container { width: 100%; background-color: #2a2a4a; border-radius: 5px; border: 1px solid #537895; height: 25px; overflow: hidden; box-shadow: inset 0 0 5px #000; }
+.progress-bar { height: 100%; color: #fff; text-align: center; line-height: 25px; white-space: nowrap; text-shadow: 1px 1px 1px #000; }
+.quest { background-color: #0f3460; border: 1px solid #537895; padding: 10px 15px; margin-bottom: 10px; border-radius: 5px; display: flex; align-items: center; }
+.quest-info { flex-grow: 1; }
+.quest-title { font-weight: bold; font-size: 1.2rem; }
+.quest-reward { font-size: 0.9rem; color: #55d0a0; }
+.add-quest-form { display: flex; margin-top: 20px; }
+#new-quest-input { flex-grow: 1; background-color: #1a1a2e; border: 1px solid #537895; border-radius: 5px; padding: 10px; color: #e0e1dd; font-family: 'VT323', monospace; font-size: 1rem; }
+#new-quest-input:focus { outline: none; border-color: #e94560; box-shadow: 0 0 10px #e94560; }
+#inventory-list, #skills-list { list-style-type: "▷ "; padding-left: 20px; margin: 0; }
+#inventory-list li, #skills-list li { background-color: transparent; padding: 8px; border-radius: 5px; margin-bottom: 5px; border: none; transition: color 0.3s ease; }
+#inventory-list li:hover, #skills-list li:hover { color: #55d0a0; }
